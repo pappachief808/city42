@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#061524">
+  <title>РАЙОН 42</title>
+  <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="brand">РАЙОН <strong>42</strong></div>
+      <div class="sub" id="hello">Заходим, брат.</div>
+    </div>
+    <div class="wallets">
+      <div>💵 <b id="money">500</b></div>
+      <div>⚡ <b id="energy">100</b></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="view active" id="view-home">
+      <div class="scene home-scene">
+        <div class="sun"></div>
+        <div class="building b1"></div><div class="building b2"></div><div class="building b3"></div>
+        <div class="tree t1"></div><div class="tree t2"></div>
+        <div class="character-main">😎</div>
+        <div class="street-sign">РАЙОН<br><b>42</b></div>
+        <div class="scene-copy"><span>ТВОЙ РАЙОН</span><h1>Делай дела.<br>Качай уровень.</h1></div>
+      </div>
+
+      <div class="progress-card">
+        <div class="row"><b>Уровень <span id="level">1</span></b><span><b id="xp">0</b> / <span id="xpToNext">500</span> XP</span></div>
+        <div class="xpbar"><i id="xpbar"></i></div>
+        <div class="row mini"><span>😎 Репутация</span><b id="rep">0</b></div>
+      </div>
+
+      <div class="section-head"><h2>Мой район</h2><button class="link-btn" data-screen="map">Карта →</button></div>
+      <div class="location-grid">
+        <button class="location loc-yard" data-screen="tasks"><span>🏠</span><b>Двор</b><small>Дела доступны</small></button>
+        <button class="location loc-garage" data-screen="tasks"><span>🔧</span><b>Гараж</b><small>Дела доступны</small></button>
+        <button class="location loc-bar" data-screen="map"><span>🍺</span><b>Бар</b><small>Откроется на 5 LVL</small></button>
+        <button class="location loc-hall" data-screen="hall"><span>🎰</span><b>Игровой зал</b><small>Мини-игра</small></button>
+      </div>
+
+      <div class="section-head"><h2>Сегодня</h2></div>
+      <div class="daily card">
+        <div class="daily-icon">🎁</div><div class="daily-copy"><b>Ежедневный бонус</b><small>Забирай награду раз в день</small></div>
+        <button class="primary" id="dailyBtn">ЗАБРАТЬ</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-tasks">
+      <div class="section-head"><h2>Дела</h2><span class="pill">⚡ <b id="energy2">100</b>/100</span></div>
+      <div class="notice">Чем выше уровень, тем прибыльнее дела. Энергия восстанавливается со временем.</div>
+      <div id="tasks"></div>
+    </section>
+
+    <section class="view" id="view-map">
+      <div class="section-head"><h2>Карта района</h2></div>
+      <div class="map-card">
+        <div class="map-road r1"></div><div class="map-road r2"></div>
+        <button class="map-pin p1" data-screen="tasks">🏠<small>Двор</small></button>
+        <button class="map-pin p2" data-screen="tasks">🔧<small>Гараж</small></button>
+        <button class="map-pin p3">🍺<small>Бар</small><em>LVL 5</em></button>
+        <button class="map-pin p4" data-screen="hall">🎰<small>Зал</small><em>LVL 10</em></button>
+        <button class="map-pin p5">🏢<small>Бизнес</small><em>LVL 20</em></button>
+      </div>
+      <div class="unlock-list">
+        <div class="unlock"><b>🍺 Бар</b><span>Уровень 5</span></div>
+        <div class="unlock"><b>🎰 Игровой зал</b><span>Уровень 10</span></div>
+        <div class="unlock"><b>🏢 Бизнес-центр</b><span>Уровень 20</span></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-inventory">
+      <div class="section-head"><h2>Инвентарь</h2><button class="link-btn" data-screen="profile">Профиль →</button></div>
+      <div class="avatar-card">
+        <div class="big-avatar">😎</div><div><b id="profileName">Игрок</b><div class="muted">Уровень <span id="profileLevel">1</span></div><div class="tag">Уличный стиль</div></div>
+      </div>
+      <div class="tabs"><button class="tab active">Все</button><button class="tab">Одежда</button><button class="tab">Предметы</button></div>
+      <div class="inventory-grid">
+        <div class="slot equipped">🧥<small>Куртка</small></div><div class="slot">🧢<small>Кепка</small></div><div class="slot">🕶️<small>Очки</small></div>
+        <div class="slot">👟<small>Кроссы</small></div><div class="slot">⌚<small>Часы</small></div><div class="slot">🔗<small>Цепь</small></div>
+        <div class="slot">🎒<small>Рюкзак</small></div><div class="slot">🔧<small>Инструмент</small></div><div class="slot">🎟️<small>Билет</small></div>
+      </div>
+      <div class="card selected-item"><div class="item-icon">🧥</div><div><b>Куртка «Авторитет»</b><small>+5 репутации</small></div><button class="primary">НАДЕТЬ</button></div>
+    </section>
+
+    <section class="view" id="view-people">
+      <div class="section-head"><h2>Люди</h2><span class="pill">🏆 Топ района</span></div>
+      <div class="search card"><input id="search" placeholder="🔎 Найти игрока"></div>
+      <div class="tabs"><button class="tab active">Уровень</button><button class="tab">Богатство</button><button class="tab">Репутация</button></div>
+      <div id="leaderboard"></div>
+    </section>
+
+    <section class="view" id="view-profile">
+      <div class="section-head"><h2>Профиль</h2></div>
+      <div class="profile-hero scene"><div class="character-main">😎</div><div class="profile-copy"><small>ИГРОК</small><h1 id="profileName2">Игрок</h1><b>LVL <span id="profileLevel2">1</span></b></div></div>
+      <div class="profile-stats"><div><b id="statLevel">1</b><small>уровень</small></div><div><b id="statMoney">500</b><small>деньги</small></div><div><b id="statRep">0</b><small>репутация</small></div></div>
+      <div class="card profile-note"><b>Статус</b><p>Стань местной легендой и открой весь район.</p></div>
+    </section>
+
+    <section class="view" id="view-shop">
+      <div class="section-head"><h2>Магазин</h2><span class="pill">💵 <b id="money2">500</b></span></div>
+      <div class="shop-grid">
+        <div class="shop-item"><div class="item-art">⚡</div><div><b>Энергия +50</b><small>Сразу добавляет энергию</small></div><button class="primary" onclick="buyItem('energy50')">250 ₽</button></div>
+        <div class="shop-item"><div class="item-art">🕶️</div><div><b>Очки «Авторитет»</b><small>+5 репутации</small></div><button class="primary" onclick="buyItem('glasses')">2 000 ₽</button></div>
+        <div class="shop-item premium"><div class="item-art">👑</div><div><b>РАЙОН 42 PREMIUM</b><small>VIP + ускоренная энергия + бонусы</small></div><button class="primary" onclick="buyStars('premium')">499 ⭐</button></div>
+        <div class="shop-item"><div class="item-art">⚡100</div><div><b>Энергия +100</b><small>Покупка за Telegram Stars</small></div><button class="primary" onclick="buyStars('energy100')">79 ⭐</button></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-hall">
+      <div class="section-head"><h2>Игровой зал</h2><span class="pill">💵 <b id="hallMoney">500</b></span></div>
+      <div class="hall-scene"><div class="neon">777</div><div class="reels" id="machine">🍒 <span>7️⃣</span> 🍋</div><div class="hall-title">ИГРОВОЙ ЗАЛ</div><div class="hall-hint">Демонстрационная мини-игра за внутриигровую валюту.</div><button class="spin" id="spinBtn">КРУТИТЬ · 100 ₽</button><div class="result" id="spinResult">Выигрыш: 0 ₽</div></div>
+    </section>
+  </main>
+
+  <nav class="nav">
+    <button class="nav-btn active" data-screen="home">🏠<span>Главная</span></button>
+    <button class="nav-btn" data-screen="tasks">🎯<span>Дела</span></button>
+    <button class="nav-btn" data-screen="inventory">🎒<span>Инвентарь</span></button>
+    <button class="nav-btn" data-screen="people">👥<span>Люди</span></button>
+    <button class="nav-btn" data-screen="shop">🛒<span>Магазин</span></button>
+  </nav>
+  <div class="toast" id="toast"></div>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
